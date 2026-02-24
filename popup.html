@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Helper</title>
+    <link rel="stylesheet" href="popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">AI Interview Helper</div>
+            <button id="settingsBtn" title="API Settings">⚙️</button>
+        </header>
+
+        <section id="mainView">
+            <div class="selection-box">
+                <div class="selection-header">
+                    <label>Selected Text:</label>
+                    <button id="refreshBtn" title="Refresh Selection">🔄</button>
+                </div>
+                <div id="selectedTextDisplay" class="text-preview">Select some text on the page...</div>
+            </div>
+
+            <div class="actions-grid">
+                <button class="action-btn" data-type="explain">
+                    <span class="icon">🔍</span>
+                    <span>Explain Simply</span>
+                </button>
+                <button class="action-btn" data-type="hint">
+                    <span class="icon">💡</span>
+                    <span>Give Hint</span>
+                </button>
+                <button class="action-btn" data-type="approach">
+                    <span class="icon">🚀</span>
+                    <span>Approach</span>
+                </button>
+                <button class="action-btn" data-type="grammar">
+                    <span class="icon">✍️</span>
+                    <span>Correct HR</span>
+                </button>
+            </div>
+
+            <div id="resultContainer" class="hidden">
+                <div class="result-header">
+                    <span id="resultTypeTitle">Result</span>
+                    <button id="copyBtn">Copy</button>
+                </div>
+                <div id="resultContent" class="result-content"></div>
+                <div id="loader" class="loader hidden"></div>
+            </div>
+        </section>
+
+        <section id="settingsView" class="hidden">
+            <div class="settings-header">
+                <button id="backBtn">← Back</button>
+                <h3>API Configuration</h3>
+            </div>
+            <div class="input-group">
+                <label for="apiKeyInput">OpenAI API Key:</label>
+                <input type="password" id="apiKeyInput" placeholder="sk-...">
+                <button id="saveKeyBtn">Save Key</button>
+            </div>
+            <p class="crypto-note">Your key is stored locally in your browser.</p>
+        </section>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
