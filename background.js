@@ -1,4 +1,4 @@
-// background.js - Final Stable Version
+// background.js - Multi-Provider AI Engine (Groq + Gemini)
 chrome.runtime.onInstalled.addListener(() => {
   console.log("AI Interview Helper Ready.");
 
@@ -36,8 +36,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 async function handleAIRequest(text, type, sendResponse, tabId = null) {
-  const storage = await chrome.storage.local.get("openai_api_key");
-  const apiKey = storage.openai_api_key;
+  const storage = await chrome.storage.local.get("ai_api_key");
+  const apiKey = storage.ai_api_key;
 
   if (!apiKey) {
     const err = "API Key missing. Please set it in the extension settings.";
@@ -48,33 +48,55 @@ async function handleAIRequest(text, type, sendResponse, tabId = null) {
 
   if (tabId) chrome.tabs.sendMessage(tabId, { action: "showLoading" }).catch(() => { });
 
-  let apiUrl = "https://api.openai.com/v1/chat/completions";
-  let model = "gpt-3.5-turbo";
-
-  if (apiKey.startsWith("gsk_")) {
-    apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-    model = "llama-3.3-70b-versatile";
-  }
-
   const promptText = generatePrompt(text, type);
 
   try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: model,
-        messages: [{ role: "user", content: promptText }],
-        temperature: 0.7
-      })
-    });
+    let result = null;
+    let error = null;
 
-    const data = await response.json();
-    const result = data.choices ? data.choices[0].message.content : (data.error ? data.error.message : "API Error");
-    const error = data.choices ? null : (data.error ? data.error.message : "Unknown error");
+    if (apiKey.startsWith("gsk_")) {
+      // Groq API (OpenAI-compatible)
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "llama-3.3-70b-versatile",
+          messages: [{ role: "user", content: promptText }],
+          temperature: 0.7
+        })
+      });
+
+      const data = await response.json();
+      if (data.choices) {
+        result = data.choices[0].message.content;
+      } else {
+        error = data.error ? data.error.message : "Groq API Error";
+      }
+
+    } else {
+      // Gemini API
+      const model = "gemini-2.0-flash";
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: promptText }] }],
+          generationConfig: { temperature: 0.7 }
+        })
+      });
+
+      const data = await response.json();
+      if (data.candidates && data.candidates.length > 0) {
+        result = data.candidates[0].content.parts[0].text;
+      } else {
+        error = data.error ? data.error.message : "No response from Gemini API.";
+      }
+    }
 
     if (sendResponse) sendResponse({ result, error });
     if (tabId) {
@@ -86,7 +108,7 @@ async function handleAIRequest(text, type, sendResponse, tabId = null) {
       }).catch(() => { });
     }
   } catch (e) {
-    const err = "Failed to connect to API.";
+    const err = "Failed to connect to API: " + e.message;
     if (sendResponse) sendResponse({ error: err });
     if (tabId) chrome.tabs.sendMessage(tabId, { action: "showResult", error: err }).catch(() => { });
   }
