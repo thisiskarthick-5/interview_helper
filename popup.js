@@ -1,4 +1,4 @@
-// popup.js - Final Stable Version
+// popup.js - Premium Dark + Gold Theme
 document.addEventListener('DOMContentLoaded', async () => {
     const selDisplay = document.getElementById('selectedTextDisplay');
     const apiInput = document.getElementById('apiKeyInput');
@@ -7,33 +7,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loader = document.getElementById('loader');
 
     async function update() {
-        if (!chrome.runtime?.id) return; // Added check for chrome.runtime.id
-        resContainer.classList.add('hidden'); // Added from the provided code edit
-        resultContent.innerText = ""; // Added from the provided code edit
+        if (!chrome.runtime?.id) return;
+        resContainer.classList.add('hidden');
+        resultContent.innerText = "";
 
         try {
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
             if (tab && tab.id) {
                 chrome.tabs.sendMessage(tab.id, { action: "GET_SELECTION" }, (res) => {
                     if (chrome.runtime.lastError) {
-                        selDisplay.innerText = "Error: Refresh the page."; // Modified error message and target
+                        selDisplay.innerText = "Refresh the page to activate.";
+                        selDisplay.style.color = "#555";
                         return;
                     }
                     if (res && res.text) {
                         selDisplay.innerText = res.text;
-                        selDisplay.style.color = "#f8fafc"; // Added from the provided code edit
-                        chrome.storage.local.set({ selectedText: res.text }).catch(() => { }); // Added .catch
+                        selDisplay.style.color = "#ffffff";
+                        chrome.storage.local.set({ selectedText: res.text }).catch(() => { });
                     }
                 });
             }
         } catch (e) { }
 
         const data = await chrome.storage.local.get('selectedText');
-        if (data.selectedText) selDisplay.innerText = data.selectedText;
+        if (data.selectedText) {
+            selDisplay.innerText = data.selectedText;
+            selDisplay.style.color = "#ffffff";
+        }
     }
 
     update();
 
+    // Navigation
     document.getElementById('refreshBtn').onclick = update;
     document.getElementById('settingsBtn').onclick = () => {
         document.getElementById('mainView').classList.add('hidden');
@@ -44,29 +49,52 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('mainView').classList.remove('hidden');
     };
 
+    // Save API Key
     document.getElementById('saveKeyBtn').onclick = async () => {
         const key = apiInput.value.trim();
-        await chrome.storage.local.set({ openai_api_key: key });
-        alert("Saved!");
+        if (!key) return alert("Please enter an API key.");
+        await chrome.storage.local.set({ ai_api_key: key });
+        alert("✓ Key saved successfully!");
     };
 
-    const stored = await chrome.storage.local.get('openai_api_key');
-    if (stored.openai_api_key) apiInput.value = stored.openai_api_key;
+    // Load saved key
+    const stored = await chrome.storage.local.get('ai_api_key');
+    if (stored.ai_api_key) apiInput.value = stored.ai_api_key;
 
-    document.querySelectorAll('.action-btn').forEach(btn => {
+    // Copy button
+    document.getElementById('copyBtn').onclick = () => {
+        const text = resultContent.innerText;
+        if (text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const original = btn.innerHTML;
+                btn.innerHTML = '<span>✓ Copied</span>';
+                setTimeout(() => btn.innerHTML = original, 1500);
+            });
+        }
+    };
+
+    // Action buttons
+    document.querySelectorAll('.action-card').forEach(btn => {
         btn.onclick = () => {
             const type = btn.dataset.type;
             const text = selDisplay.innerText;
-            if (text.includes("Select some text")) return alert("Select text first!");
+            if (!text || text.includes("Highlight some text") || text.includes("Refresh the page")) {
+                return alert("Select text on a page first!");
+            }
 
             resContainer.classList.remove('hidden');
             resultContent.innerText = "";
             loader.classList.remove('hidden');
 
+            // Update result title
+            const titles = { explain: 'EXPLANATION', hint: 'HINT', approach: 'APPROACH', grammar: 'POLISHED' };
+            document.getElementById('resultTypeTitle').innerText = titles[type] || 'RESULT';
+
             chrome.runtime.sendMessage({ action: "getAIResponse", text, type }, (res) => {
                 loader.classList.add('hidden');
                 if (chrome.runtime.lastError) {
-                    resultContent.innerText = "Error: Refresh the page.";
+                    resultContent.innerText = "Extension error. Refresh the page.";
                     return;
                 }
                 resultContent.innerText = res.error || res.result;
