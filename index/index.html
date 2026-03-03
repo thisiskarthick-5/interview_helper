@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southland Integrated Services - Healthcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-teal: #00796B;
+            --secondary-green: #009688;
+            --accent-lime: #C5E1A5;
+            --light-blue: #E1F5FE;
+            --light-green: #E8F5E9;
+            --text-dark: #222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%; /* Slightly more padding */
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            border: 2px solid #fff; /* Changed to White for visibility */
+            color: #fff;            /* Changed to White for visibility */
+            padding: 5px 12px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;            /* Changed to White for visibility */
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-lime);
+        }
+
+        .btn-donate-top {
+            background-color: var(--primary-teal);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- Hero Section with Proper Curve --- */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 90vh; /* Increased height slightly */
+            /* Updated Image to high-quality healthcare team */
+            background: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            clip-path: ellipse(120% 100% at 50% 0%); /* Smoothed curve */
+            margin-bottom: 50px;
+        }
+
+        /* Enhanced Overlay for Navbar and Text visibility */
+        .hero-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Darker gradient at the top to make white nav visible */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff; /* Changed to White for impact */
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #f0f0f0; /* Light gray for contrast */
+            margin-bottom: 35px;
+            line-height: 1.6;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-fill {
+            background: var(--primary-teal);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-fill:hover { background: #004d40; transform: scale(1.05); }
+
+        .btn-outline {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid white;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover { background: white; color: var(--text-dark); }
+
+        /* --- Service Cards Section --- */
+        .services-section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: left;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            color: #111;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 40px 30px;
+            border-radius: 12px;
+            position: relative;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .card.blue { background-color: var(--light-blue); }
+        .card.green { background-color: var(--light-green); }
+
+        .card-icon { font-size: 2rem; color: #444; margin-bottom: 20px; }
+        .card h3 { margin-bottom: 12px; font-size: 1.3rem; }
+        .card p { font-size: 0.9rem; color: #555; line-height: 1.6; }
+        .card-arrow { position: absolute; top: 25px; right: 25px; font-size: 1.2rem; opacity: 0.5; }
+
+        /* --- Patient Journey Section --- */
+        .journey-section {
+            padding: 80px 8%;
+            text-align: center;
+            background: #fdfdfd;
+        }
+
+        .journey-header h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        .journey-header p { color: #666; max-width: 700px; margin: 0 auto 50px; }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .step-circle {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 600;
+        }
+
+        .step-card i { font-size: 2rem; margin-bottom: 15px; display: block; }
+        .step-card h4 { margin-bottom: 10px; font-size: 1rem; }
+        .step-card p { font-size: 0.8rem; color: #777; }
+
+        .btn-journey {
+            margin-top: 50px;
+            display: inline-flex;
+            background-color: var(--primary-teal);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            gap: 10px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 80px 8% 30px;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 50px;
+        }
+
+        .footer-logo { border: 2px solid white; display: inline-block; padding: 5px 15px; margin-bottom: 20px; }
+        .footer-main p { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; line-height: 1.5; }
+        .social-icons { display: flex; gap: 15px; font-size: 1.2rem; }
+
+        .footer-col h4 { margin-bottom: 20px; font-size: 1rem; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { color: #aaa; margin-bottom: 10px; font-size: 0.9rem; cursor: pointer; }
+
+        .footer-bar {
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .newsletter { display: flex; align-items: center; gap: 10px; }
+        .newsletter input {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            width: 280px;
+            outline: none;
+        }
+
+        .btn-sub {
+            background: var(--accent-lime);
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: var(--primary-teal);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .journey-grid, .footer-main { grid-template-columns: 1fr 1fr; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Chat Button -->
+    <div class="chat-widget"><i class="fa-solid fa-comment-dots"></i></div>
+
+    <header id="siteHeader">
+        <div class="logo">LOGO HERE</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Patient Portal</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Backyard Boil</a></li>
+            </ul>
+        </nav>
+        <a href="#" class="btn-donate-top">Donate Now <i class="fa-solid fa-arrow-right"></i></a>
+    </header>
+
+    <!-- Hero Section with Correct Design Curve -->
+    <section class="hero-container">
+        <div class="hero-content">
+            <h1>EMPOWERING HEALTH.<br>ENRICHING LIVES.</h1>
+            <p>Delivering integrated medical, dental, mental health, and social services to empower individuals and families in Southern California.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-fill">Find a Clinic Near You <i class="fa-solid fa-circle-arrow-right"></i></a>
+                <a href="#" class="btn-outline">Donate Now <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="section-title">COMPREHENSIVE CARE<br>FOR EVERY NEED</h2>
+        <div class="services-grid">
+            <div class="card blue">
+                <i class="fa-solid fa-stethoscope card-icon"></i>
+                <div class="card-arrow">↗</div>
+                <h3>Medical</h3>
+                <p>Offering comprehensive, personalized care to keep healthy, from routine check-ups to specialized treatments.</p>
+            </div>
+            <div class="card green">
+                <i class="fa-solid fa-tooth card-icon"></i>
+                <div class="card-arrow">↗</div>
+                <h3>Dental</h3>
+                <p>Providing preventive, restorative, and emergency dental care for a healthy, confident smile.</p>
+            </div>
+            <div class="card blue">
+                <i class="fa-solid fa-brain card-icon"></i>
+                <div class="card-arrow">↗</div>
+                <h3>Mental Health</h3>
+                <p>Offering counseling, therapy, and support to enhance emotional well-being and resilience.</p>
+            </div>
+            <div class="card green">
+                <i class="fa-solid fa-handshake-angle card-icon"></i>
+                <div class="card-arrow">↗</div>
+                <h3>Social Support</h3>
+                <p>Connecting individuals and families with essential community resources for a better quality of life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Journey Section -->
+    <section class="journey-section">
+        <div class="journey-header">
+            <h2>PATIENTS JOURNEY</h2>
+            <p>We provide the latest medical technology with state of the art medical facility to provide the best possible outcome.</p>
+        </div>
+        <div class="journey-grid">
+            <div class="step-card">
+                <div class="step-circle">1</div>
+                <i class="fa-solid fa-user-doctor"></i>
+                <h4>CONSULTATION</h4>
+                <p>Medical History, Physical Examination, Laboratory & Other Tests</p>
+            </div>
+            <div class="step-card">
+                <div class="step-circle">2</div>
+                <i class="fa-solid fa-microscope"></i>
+                <h4>FIND DIAGNOSIS</h4>
+                <p>Holistic Approach Age, Pain Level Functional Impairment Risk Factors</p>
+            </div>
+            <div class="step-card">
+                <div class="step-circle">3</div>
+                <i class="fa-solid fa-hospital-user"></i>
+                <h4>PROCEDURE</h4>
+                <p>Preparing for Surgery Post Procedure Procedure at time</p>
+            </div>
+            <div class="step-card">
+                <div class="step-circle">4</div>
+                <i class="fa-solid fa-calendar-check"></i>
+                <h4>FOLLOW-UP CARE</h4>
+                <p>Caring for Your Incision Physical Activity Follow-Up Visit</p>
+            </div>
+        </div>
+        <a href="#" class="btn-journey">Let's Start Your Journey <i class="fa-solid fa-circle-arrow-right"></i></a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-main">
+            <div class="footer-col">
+                <div class="footer-logo">LOGO HERE</div>
+                <p>Southland Integrated Services is a community based non-profit organization that operates a Federally Qualified Health Center (FQHC).</p>
+                <div class="social-icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li>Home</li>
+                    <li>Pricing & Discounts</li>
+                    <li>Who we are</li>
+                    <li>FAQ</li>
+                    <li>Sliding Fee</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>More</h4>
+                <ul>
+                    <li>Notice to the Public</li>
+                    <li>Complaint Procedure</li>
+                    <li>Complaint Form</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Locations</h4>
+                <ul>
+                    <li>Los Angeles</li>
+                    <li>San Diego</li>
+                    <li>Big Bear</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bar">
+            <div class="info">
+                <span><i class="fa-solid fa-phone"></i> (714) 620-7000</span> &nbsp; | &nbsp;
+                <span><i class="fa-solid fa-envelope"></i> info@southlandintegrated.org</span>
+            </div>
+            <div class="newsletter">
+                <span style="font-weight: 600; font-size: 0.9rem;">Stay in Touch:</span>
+                <input type="text" placeholder="Enter your email add">
+                <button class="btn-sub">SUBSCRIBE</button>
+            </div>
+        </div>
+        <p style="text-align: center; color: #555; font-size: 11px; margin-top: 40px;">Copyright @ 2024 Southland Integrated Services, Inc. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth Sticky Header behavior
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const logo = document.querySelector('.logo');
+            const navLinks = document.querySelectorAll('nav a');
+
+            if (window.scrollY > 80) {
+                header.style.backgroundColor = "rgba(255,255,255,0.95)";
+                header.style.position = "fixed";
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+                header.style.padding = "15px 5%";
+                logo.style.color = "#333";
+                logo.style.borderColor = "#333";
+                navLinks.forEach(link => {
+                    link.style.color = "#333";
+                    link.style.textShadow = "none";
+                });
+            } else {
+                header.style.backgroundColor = "transparent";
+                header.style.position = "absolute";
+                header.style.boxShadow = "none";
+                header.style.padding = "25px 5%";
+                logo.style.color = "#fff";
+                logo.style.borderColor = "#fff";
+                navLinks.forEach(link => {
+                    link.style.color = "#fff";
+                    link.style.textShadow = "0 2px 4px rgba(0,0,0,0.3)";
+                });
+            }
+        });
+    </script>
+</body>
+</html>
