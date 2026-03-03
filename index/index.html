@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Southland Integrated Services - Healthcare</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
-            --primary-teal: #00796B;
-            --secondary-green: #009688;
-            --accent-lime: #C5E1A5;
-            --light-blue: #E1F5FE;
-            --light-green: #E8F5E9;
-            --text-dark: #222;
+            --bg-cream: #F0ECE3;
+            --bg-warm: #E8E4DA;
+            --teal: #1B5E4B;
+            --teal-light: #2A7A62;
+            --teal-dark: #144A3B;
+            --yellow: #E8B931;
+            --yellow-light: #F5D56A;
+            --yellow-dim: rgba(232, 185, 49, 0.12);
+            --card-bg: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-body: #5A5A5A;
+            --text-muted: #9A9A8E;
+            --border: rgba(0, 0, 0, 0.06);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #fff;
+            background-color: var(--bg-cream);
             overflow-x: hidden;
+            color: var(--text-dark);
         }
 
         /* --- Header --- */
@@ -34,20 +47,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 5%; /* Slightly more padding */
+            padding: 25px 5%;
             position: absolute;
             width: 100%;
             z-index: 100;
         }
 
         .logo {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 20px;
-            border: 2px solid #fff; /* Changed to White for visibility */
-            color: #fff;            /* Changed to White for visibility */
-            padding: 5px 12px;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 5px 14px;
             letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
         }
 
         nav ul {
@@ -58,54 +72,61 @@
 
         nav a {
             text-decoration: none;
-            color: #fff;            /* Changed to White for visibility */
+            color: #fff;
             font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: var(--accent-lime);
+            color: var(--yellow);
         }
 
         .btn-donate-top {
-            background-color: var(--primary-teal);
-            color: white;
-            padding: 10px 22px;
+            background-color: var(--yellow);
+            color: var(--teal-dark);
+            padding: 10px 24px;
             border-radius: 25px;
             text-decoration: none;
             font-size: 13px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(232, 185, 49, 0.3);
+            transition: all 0.3s;
         }
 
-        /* --- Hero Section with Proper Curve --- */
+        .btn-donate-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 185, 49, 0.4);
+        }
+
+        /* --- Hero Section --- */
         .hero-container {
             position: relative;
             width: 100%;
-            height: 90vh; /* Increased height slightly */
-            /* Updated Image to high-quality healthcare team */
+            height: 90vh;
             background: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            clip-path: ellipse(120% 100% at 50% 0%); /* Smoothed curve */
+            clip-path: ellipse(120% 100% at 50% 0%);
             margin-bottom: 50px;
         }
 
-        /* Enhanced Overlay for Navbar and Text visibility */
         .hero-container::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* Darker gradient at the top to make white nav visible */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0) 100%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(27, 94, 75, 0.7) 0%, rgba(27, 94, 75, 0.4) 40%, rgba(27, 94, 75, 0.2) 100%);
             z-index: 1;
         }
 
@@ -121,16 +142,19 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
-            color: #fff; /* Changed to White for impact */
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            color: #fff;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content h1 span {
+            color: var(--yellow);
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            color: #f0f0f0; /* Light gray for contrast */
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 35px;
-            line-height: 1.6;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            line-height: 1.7;
         }
 
         .hero-btns {
@@ -140,8 +164,8 @@
         }
 
         .btn-fill {
-            background: var(--primary-teal);
-            color: white;
+            background: var(--yellow);
+            color: var(--teal-dark);
             padding: 16px 32px;
             border-radius: 35px;
             text-decoration: none;
@@ -150,14 +174,19 @@
             align-items: center;
             gap: 10px;
             transition: 0.3s;
+            box-shadow: 0 4px 16px rgba(232, 185, 49, 0.3);
         }
 
-        .btn-fill:hover { background: #004d40; transform: scale(1.05); }
+        .btn-fill:hover {
+            background: var(--yellow-light);
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(232, 185, 49, 0.4);
+        }
 
         .btn-outline {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            border: 1px solid white;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
             color: white;
             padding: 16px 32px;
             border-radius: 35px;
@@ -169,7 +198,11 @@
             transition: 0.3s;
         }
 
-        .btn-outline:hover { background: white; color: var(--text-dark); }
+        .btn-outline:hover {
+            background: white;
+            color: var(--teal);
+            border-color: white;
+        }
 
         /* --- Service Cards Section --- */
         .services-section {
@@ -181,7 +214,12 @@
             font-size: 2.2rem;
             margin-bottom: 40px;
             line-height: 1.2;
-            color: #111;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .section-title span {
+            color: var(--teal);
         }
 
         .services-grid {
@@ -192,30 +230,87 @@
 
         .card {
             padding: 40px 30px;
-            border-radius: 12px;
+            border-radius: 16px;
             position: relative;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--border);
         }
 
-        .card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-        .card.blue { background-color: var(--light-blue); }
-        .card.green { background-color: var(--light-green); }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
 
-        .card-icon { font-size: 2rem; color: #444; margin-bottom: 20px; }
-        .card h3 { margin-bottom: 12px; font-size: 1.3rem; }
-        .card p { font-size: 0.9rem; color: #555; line-height: 1.6; }
-        .card-arrow { position: absolute; top: 25px; right: 25px; font-size: 1.2rem; opacity: 0.5; }
+        .card.blue {
+            background-color: #FFFFFF;
+            border-left: 4px solid var(--teal);
+        }
+
+        .card.green {
+            background-color: #FFFFFF;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--teal);
+            margin-bottom: 20px;
+        }
+
+        .card.green .card-icon {
+            color: var(--yellow);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        .card-arrow {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .card:hover .card-arrow {
+            opacity: 1;
+            color: var(--teal);
+        }
 
         /* --- Patient Journey Section --- */
         .journey-section {
             padding: 80px 8%;
             text-align: center;
-            background: #fdfdfd;
+            background: var(--bg-warm);
+            border-radius: 40px 40px 0 0;
         }
 
-        .journey-header h2 { font-size: 2.2rem; margin-bottom: 15px; }
-        .journey-header p { color: #666; max-width: 700px; margin: 0 auto 50px; }
+        .journey-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .journey-header p {
+            color: var(--text-body);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
 
         .journey-grid {
             display: grid;
@@ -226,42 +321,76 @@
         .step-card {
             background: white;
             padding: 40px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
             position: relative;
+            transition: 0.3s;
+            border: 1.5px solid var(--border);
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .step-circle {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            background: var(--teal);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(27, 94, 75, 0.2);
         }
 
-        .step-card i { font-size: 2rem; margin-bottom: 15px; display: block; }
-        .step-card h4 { margin-bottom: 10px; font-size: 1rem; }
-        .step-card p { font-size: 0.8rem; color: #777; }
+        .step-card i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+            color: var(--teal);
+        }
+
+        .step-card h4 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .step-card p {
+            font-size: 0.8rem;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
 
         .btn-journey {
             margin-top: 50px;
             display: inline-flex;
-            background-color: var(--primary-teal);
+            background-color: var(--teal);
             color: white;
-            padding: 15px 35px;
-            border-radius: 30px;
+            padding: 16px 36px;
+            border-radius: 35px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 16px rgba(27, 94, 75, 0.2);
+        }
+
+        .btn-journey:hover {
+            background: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(27, 94, 75, 0.25);
         }
 
         /* --- Footer --- */
         footer {
-            background-color: #000;
+            background-color: var(--teal-dark);
             color: white;
             padding: 80px 8% 30px;
         }
@@ -270,17 +399,65 @@
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr 1fr;
             gap: 40px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 50px;
         }
 
-        .footer-logo { border: 2px solid white; display: inline-block; padding: 5px 15px; margin-bottom: 20px; }
-        .footer-main p { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; line-height: 1.5; }
-        .social-icons { display: flex; gap: 15px; font-size: 1.2rem; }
+        .footer-logo {
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            display: inline-block;
+            padding: 5px 15px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-radius: 6px;
+        }
 
-        .footer-col h4 { margin-bottom: 20px; font-size: 1rem; color: #fff; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { color: #aaa; margin-bottom: 10px; font-size: 0.9rem; cursor: pointer; }
+        .footer-main p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 1.2rem;
+        }
+
+        .social-icons i {
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icons i:hover {
+            color: var(--yellow);
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .footer-col li:hover {
+            color: var(--yellow);
+        }
 
         .footer-bar {
             padding-top: 40px;
@@ -291,31 +468,65 @@
             gap: 20px;
         }
 
-        .newsletter { display: flex; align-items: center; gap: 10px; }
+        .footer-bar .info {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .newsletter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .newsletter span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .newsletter input {
             padding: 12px 20px;
             border-radius: 25px;
             border: none;
             width: 280px;
             outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: inherit;
+        }
+
+        .newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
         }
 
         .btn-sub {
-            background: var(--accent-lime);
-            color: #000;
+            background: var(--yellow);
+            color: var(--teal-dark);
             padding: 12px 25px;
             border: none;
             border-radius: 25px;
             font-weight: 700;
             cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .btn-sub:hover {
+            background: var(--yellow-light);
+        }
+
+        footer .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 11px;
+            margin-top: 40px;
         }
 
         .chat-widget {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: white;
-            color: var(--primary-teal);
+            background: var(--teal);
+            color: white;
             width: 55px;
             height: 55px;
             border-radius: 50%;
@@ -323,18 +534,49 @@
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 24px rgba(27, 94, 75, 0.3);
             cursor: pointer;
             z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(27, 94, 75, 0.4);
         }
 
         @media (max-width: 992px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .journey-grid, .footer-main { grid-template-columns: 1fr 1fr; }
-            nav { display: none; }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .journey-grid,
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .journey-grid,
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter input {
+                width: 200px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Chat Button -->
@@ -355,11 +597,12 @@
         <a href="#" class="btn-donate-top">Donate Now <i class="fa-solid fa-arrow-right"></i></a>
     </header>
 
-    <!-- Hero Section with Correct Design Curve -->
+    <!-- Hero Section -->
     <section class="hero-container">
         <div class="hero-content">
-            <h1>EMPOWERING HEALTH.<br>ENRICHING LIVES.</h1>
-            <p>Delivering integrated medical, dental, mental health, and social services to empower individuals and families in Southern California.</p>
+            <h1>EMPOWERING <span>HEALTH.</span><br>ENRICHING <span>LIVES.</span></h1>
+            <p>Delivering integrated medical, dental, mental health, and social services to empower individuals and
+                families in Southern California.</p>
             <div class="hero-btns">
                 <a href="#" class="btn-fill">Find a Clinic Near You <i class="fa-solid fa-circle-arrow-right"></i></a>
                 <a href="#" class="btn-outline">Donate Now <i class="fa-solid fa-circle-arrow-right"></i></a>
@@ -369,13 +612,14 @@
 
     <!-- Services Section -->
     <section class="services-section">
-        <h2 class="section-title">COMPREHENSIVE CARE<br>FOR EVERY NEED</h2>
+        <h2 class="section-title">COMPREHENSIVE <span>CARE</span><br>FOR EVERY NEED</h2>
         <div class="services-grid">
             <div class="card blue">
                 <i class="fa-solid fa-stethoscope card-icon"></i>
                 <div class="card-arrow">↗</div>
                 <h3>Medical</h3>
-                <p>Offering comprehensive, personalized care to keep healthy, from routine check-ups to specialized treatments.</p>
+                <p>Offering comprehensive, personalized care to keep healthy, from routine check-ups to specialized
+                    treatments.</p>
             </div>
             <div class="card green">
                 <i class="fa-solid fa-tooth card-icon"></i>
@@ -393,7 +637,8 @@
                 <i class="fa-solid fa-handshake-angle card-icon"></i>
                 <div class="card-arrow">↗</div>
                 <h3>Social Support</h3>
-                <p>Connecting individuals and families with essential community resources for a better quality of life.</p>
+                <p>Connecting individuals and families with essential community resources for a better quality of life.
+                </p>
             </div>
         </div>
     </section>
@@ -402,7 +647,8 @@
     <section class="journey-section">
         <div class="journey-header">
             <h2>PATIENTS JOURNEY</h2>
-            <p>We provide the latest medical technology with state of the art medical facility to provide the best possible outcome.</p>
+            <p>We provide the latest medical technology with state of the art medical facility to provide the best
+                possible outcome.</p>
         </div>
         <div class="journey-grid">
             <div class="step-card">
@@ -438,7 +684,8 @@
         <div class="footer-main">
             <div class="footer-col">
                 <div class="footer-logo">LOGO HERE</div>
-                <p>Southland Integrated Services is a community based non-profit organization that operates a Federally Qualified Health Center (FQHC).</p>
+                <p>Southland Integrated Services is a community based non-profit organization that operates a Federally
+                    Qualified Health Center (FQHC).</p>
                 <div class="social-icons">
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-instagram"></i>
@@ -482,11 +729,11 @@
             </div>
             <div class="newsletter">
                 <span style="font-weight: 600; font-size: 0.9rem;">Stay in Touch:</span>
-                <input type="text" placeholder="Enter your email add">
+                <input type="text" placeholder="Enter your email address">
                 <button class="btn-sub">SUBSCRIBE</button>
             </div>
         </div>
-        <p style="text-align: center; color: #555; font-size: 11px; margin-top: 40px;">Copyright @ 2024 Southland Integrated Services, Inc. All Rights Reserved.</p>
+        <p class="copyright">Copyright @ 2024 Southland Integrated Services, Inc. All Rights Reserved.</p>
     </footer>
 
     <script>
@@ -497,14 +744,14 @@
             const navLinks = document.querySelectorAll('nav a');
 
             if (window.scrollY > 80) {
-                header.style.backgroundColor = "rgba(255,255,255,0.95)";
+                header.style.backgroundColor = "rgba(240,236,227,0.97)";
                 header.style.position = "fixed";
-                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.06)";
                 header.style.padding = "15px 5%";
-                logo.style.color = "#333";
-                logo.style.borderColor = "#333";
+                logo.style.color = "#1B5E4B";
+                logo.style.borderColor = "#1B5E4B";
                 navLinks.forEach(link => {
-                    link.style.color = "#333";
+                    link.style.color = "#1A1A1A";
                     link.style.textShadow = "none";
                 });
             } else {
@@ -522,4 +769,5 @@
         });
     </script>
 </body>
+
 </html>
