@@ -11,111 +11,115 @@
 
 <body>
     <div class="app">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-left">
-                <div class="avatar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <polygon
-                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                </div>
-                <div>
-                    <div class="header-name">TechHelp</div>
-                    <div class="header-status">
-                        <span class="status-dot"></span>
-                        Ready
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <div class="hero-top">
+                <div class="header-left">
+                    <div class="avatar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E4B" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="header-name">TechHelp AI</div>
+                        <div class="header-status">
+                            <span class="status-dot"></span>
+                            Ready to assist
+                        </div>
                     </div>
                 </div>
+                <button id="settingsBtn" class="header-btn" title="Settings">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                    </svg>
+                </button>
             </div>
-            <button id="settingsBtn" class="header-btn" title="Settings">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="4" y1="21" x2="4" y2="14" />
-                    <line x1="4" y1="10" x2="4" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="12" />
-                    <line x1="12" y1="8" x2="12" y2="3" />
-                    <line x1="20" y1="21" x2="20" y2="16" />
-                    <line x1="20" y1="12" x2="20" y2="3" />
-                    <line x1="1" y1="14" x2="7" y2="14" />
-                    <line x1="9" y1="8" x2="15" y2="8" />
-                    <line x1="17" y1="16" x2="23" y2="16" />
-                </svg>
-            </button>
+            <!-- Greeting Banner -->
+            <div class="greeting-banner">
+                <div class="greeting-text">
+                    <span class="greeting-emoji">✨</span>
+                    <div>
+                        <div class="greeting-title">Your AI Study Buddy</div>
+                        <div class="greeting-sub">Select text anywhere to get instant help</div>
+                    </div>
+                </div>
+                <div class="greeting-decoration"></div>
+            </div>
         </div>
 
         <!-- Main View -->
         <div id="mainView" class="main">
-            <!-- Search Bar -->
-            <div class="search-bar">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <input type="text" class="search-input" placeholder="Search for help, topics..." readonly>
-            </div>
-
-            <!-- Action Row -->
-            <div class="action-row">
-                <button class="action-card" data-type="explain">
-                    <div class="action-icon">
+            <!-- Quick Actions Bento -->
+            <div class="section-label">Quick Actions</div>
+            <div class="bento-grid">
+                <button class="bento-card bento-primary action-card" data-type="explain">
+                    <div class="bento-icon bento-icon-primary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8" />
                             <line x1="21" y1="21" x2="16.65" y2="16.65" />
                         </svg>
                     </div>
-                    <span class="action-label">Explain</span>
+                    <div class="bento-content">
+                        <span class="bento-title">Explain</span>
+                        <span class="bento-sub">Simplify concepts</span>
+                    </div>
+                    <div class="bento-arrow">→</div>
                 </button>
-                <button class="action-card" data-type="hint">
-                    <div class="action-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <button class="bento-card bento-sm action-card" data-type="hint">
+                    <div class="bento-icon bento-icon-yellow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
                                 d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z" />
                             <line x1="9" y1="21" x2="15" y2="21" />
                         </svg>
                     </div>
-                    <span class="action-label">Hint</span>
+                    <span class="bento-title-sm">Hint</span>
                 </button>
-                <button class="action-card" data-type="approach">
-                    <div class="action-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <button class="bento-card bento-sm action-card" data-type="approach">
+                    <div class="bento-icon bento-icon-green">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                         </svg>
                     </div>
-                    <span class="action-label">Approach</span>
+                    <span class="bento-title-sm">Approach</span>
                 </button>
-                <button class="action-card" data-type="grammar">
-                    <div class="action-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <button class="bento-card bento-wide action-card" data-type="grammar">
+                    <div class="bento-icon bento-icon-teal">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 20h9" />
                             <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
                         </svg>
                     </div>
-                    <span class="action-label">Polish</span>
+                    <div class="bento-content">
+                        <span class="bento-title">Polish & Correct</span>
+                        <span class="bento-sub">Fix grammar & clarity</span>
+                    </div>
+                    <div class="bento-arrow">→</div>
                 </button>
             </div>
 
             <!-- Context Section -->
+            <div class="section-label">Selected Context</div>
             <div class="context-section">
-                <div class="context-pill">
-                    <div class="pill-left">
+                <div class="context-header">
+                    <div class="context-icon-wrap">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                             <polyline points="14 2 14 8 20 8" />
-                            <line x1="16" y1="13" x2="8" y2="13" />
-                            <line x1="16" y1="17" x2="8" y2="17" />
                         </svg>
-                        <span class="pill-label">Context</span>
                     </div>
-                    <button id="refreshBtn" class="pill-action" title="Refresh">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    <button id="refreshBtn" class="refresh-btn" title="Refresh">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="23 4 23 10 17 10" />
                             <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
@@ -128,10 +132,8 @@
             <!-- Result -->
             <div id="resultContainer" class="result-section hidden">
                 <div class="result-header">
-                    <div class="result-tag-wrap">
-                        <span class="result-tag" id="resultTypeTitle">Result</span>
-                    </div>
-                    <button id="copyBtn" class="action-link">
+                    <span class="result-tag" id="resultTypeTitle">Result</span>
+                    <button id="copyBtn" class="copy-btn">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
@@ -203,10 +205,7 @@
             <button class="nav-tab" title="Actions">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                     stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="17 1 21 5 17 9" />
-                    <path d="M3 11V9a4 4 0 014-4h14" />
-                    <polyline points="7 23 3 19 7 15" />
-                    <path d="M21 13v2a4 4 0 01-4 4H3" />
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                 </svg>
                 <span class="nav-label">Actions</span>
             </button>
@@ -218,7 +217,7 @@
                 </svg>
                 <span class="nav-label">History</span>
             </button>
-            <button class="nav-tab" title="Search">
+            <button class="nav-tab" title="Settings">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8" />
