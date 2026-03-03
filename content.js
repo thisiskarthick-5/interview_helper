@@ -116,14 +116,14 @@ function showPanel(x, y, text) {
 
             <button class="th-btn" data-t="hint" style="padding:16px 10px;cursor:pointer;background:#FFFFFF;color:#555;border:1.5px solid rgba(0,0,0,0.06);border-radius:14px;font-family:inherit;font-size:12px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
                 <div style="width:38px;height:38px;background:rgba(232,185,49,.1);border-radius:10px;display:flex;align-items:center;justify-content:center">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8B931" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8B931" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
                 </div>
                 Hint
             </button>
 
             <button class="th-btn" data-t="approach" style="padding:16px 10px;cursor:pointer;background:#FFFFFF;color:#555;border:1.5px solid rgba(0,0,0,0.06);border-radius:14px;font-family:inherit;font-size:12px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
                 <div style="width:38px;height:38px;background:rgba(52,199,89,.08);border-radius:10px;display:flex;align-items:center;justify-content:center">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 000-7h-11a3.5 3.5 0 010-7H15"/><circle cx="18" cy="5" r="3"/></svg>
                 </div>
                 Approach
             </button>
